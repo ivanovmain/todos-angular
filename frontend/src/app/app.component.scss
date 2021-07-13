@@ -1,0 +1,11 @@
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.top-bar-button {
+  margin-left: 10px;
+}
