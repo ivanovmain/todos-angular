@@ -1,12 +1,13 @@
   <mat-toolbar>
   <a routerLink="/" routerLinkActive="active">Home</a>
+  <span class="name" *ngIf="name">Hello {{name}}</span>
   <span class="example-spacer"></span>
-  <button class="top-bar-button" mat-raised-button color="primary">
+  <button routerLink="signup" routerLinkActive="active" class="top-bar-button" mat-raised-button color="primary">
     Sign up
     <mat-icon>person_add</mat-icon>
   </button>
   <button routerLink="login" routerLinkActive="active" class="top-bar-button" mat-raised-button color="accent">
-    Sign in
+    Login
     <mat-icon>login</mat-icon>
   </button>
 </mat-toolbar>

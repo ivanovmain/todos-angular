@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
 import { 
-  AuthGuardService as AuthGuard 
+  AuthGuardService as AuthGuard, AuthGuardService 
 } from './auth-guard.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,12 +17,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { SignupComponent } from './signup/signup.component';
+import { TodoService } from './todo.service';
+import { DataService } from './data.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TodosComponent
+    TodosComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { MatInputModule } from '@angular/material/input';
     RouterModule.forRoot([
       { path: '', redirectTo: '/todos', pathMatch: 'full'},
       { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
       { path: 'todos', component: TodosComponent, canActivate: [AuthGuard] }
     ]),
     JwtModule.forRoot({
@@ -49,7 +55,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [TodoService, DataService, AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

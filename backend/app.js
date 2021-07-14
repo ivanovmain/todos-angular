@@ -12,6 +12,7 @@ app.use(cors())
 app.use(express.json());
 
 const User = require("./model/user");
+const Todo = require("./model/todo");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("./middleware/auth");
@@ -92,8 +93,48 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/welcome", auth, (req, res) => {
-  res.status(200).send("Welcome 🙌 ");
+
+app.post("/addtodo", auth, async (req, res) => {
+  console.log('req', req.body)
+  const {userId, title} = req.body;
+
+  console.log('userId', userId)
+
+  const todo = await Todo.create({
+    title: title,
+    userId: userId
+  });
+
+  res.status(200).send(todo);
+});
+
+app.post("/todos", auth, async (req, res) => {
+  console.log('req', req.body)
+  const {userId} = req.body;
+
+  const todos = await Todo.find({ userId });
+
+
+  res.status(200).send(todos);
+});
+
+app.post("/deletetodo", auth, async (req, res) => {
+  console.log('req', req.body)
+  const {id} = req.body;
+
+  const todo = await Todo.findOneAndRemove({ _id: id });
+
+
+  res.status(200).send(todo);
+});
+
+app.post("/getuser", auth, async (req, res) => {
+  
+  const {user} = req;
+
+  const findedUser = await User.findOne({ _id: user.user_id });
+
+  res.status(200).send(findedUser);
 });
 
 module.exports = app;

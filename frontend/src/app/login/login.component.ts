@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TodoService } from '../todo.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,9 @@ export class LoginComponent implements OnInit {
   
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService
+    private todoService: TodoService,
+    private dataService: DataService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +34,8 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         console.log('data', data);
         localStorage.setItem('token', data.token);
-        
+        this.dataService.setUser(data);
+        this.router.navigate(['todos']);
       },
       error => console.log(error)
   );
