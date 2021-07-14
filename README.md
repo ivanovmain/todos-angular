@@ -1,5 +1,5 @@
-###todos-angular
-##Clone project and use
+### todos-angular
+## Clone project and use
 ## Run frontend
 ## `cd frontend`
 ### `npm install`
