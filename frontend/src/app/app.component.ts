@@ -8,7 +8,7 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend'
+  title = 'TODO'
   constructor(
     private todoService: TodoService,
     private dataService: DataService
@@ -24,7 +24,6 @@ export class AppComponent {
     this.todoService.getUserFromToken(token)
     .subscribe(
       (data: any) => {
-        console.log('data', data);
         this.dataService.setUser(data);
         this.dataService.sendUserId(data._id)
       },

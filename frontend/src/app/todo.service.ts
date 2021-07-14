@@ -49,7 +49,7 @@ export class TodoService {
 
   }
 
-  addTodo(userId: string, title: string, token: string) {
+  addTodo(userId: string, title: string, token: string | null) {
     const todosUrl = `${this.baseUrl}/addtodo`;
 
     const body = {
@@ -62,7 +62,7 @@ export class TodoService {
 
   }
 
-  deleteTodo(id: string, token: string) {
+  deleteTodo(id: string, token: string | null) {
     const todosUrl = `${this.baseUrl}/deletetodo`;
 
     const body = {

@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     email: ['', Validators.email],
     password: ['', Validators.required]
   });
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private todoService: TodoService,
@@ -26,21 +26,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(): void {
-    // Process checkout data here
-    if(this.checkoutForm.valid) {
-      console.warn('Login submitted', this.checkoutForm.value);
-    this.todoService.login(this.checkoutForm.value.email, this.checkoutForm.value.password)
-    .subscribe(
-      (data: any) => {
-        console.log('data', data);
-        localStorage.setItem('token', data.token);
-        this.dataService.setUser(data);
-        this.router.navigate(['todos']);
-      },
-      error => console.log(error)
-  );
-    this.checkoutForm.reset();
-  }
-    }
 
+    if (this.checkoutForm.valid) {
+      this.todoService.login(this.checkoutForm.value.email, this.checkoutForm.value.password)
+        .subscribe(
+          (data: any) => {
+            localStorage.setItem('token', data.token);
+            this.dataService.setUser(data);
+            this.router.navigate(['todos']);
+          },
+          error => console.log(error)
+        );
+      this.checkoutForm.reset();
+    }
+  }
 }

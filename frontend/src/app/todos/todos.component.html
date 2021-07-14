@@ -1,5 +1,29 @@
-<ul>
-  <li *ngFor="let todo of todos">
-    {{ todo.title }}
-  </li>
-</ul>
+<div class="todo-wrapper">
+  <div class="form-wrapper">
+    <form class="example-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label >Add todo</mat-label>
+        <input type="text" matInput id="todo" formControlName="todo"
+               placeholder="I need to buy milk">
+      </mat-form-field>
+      <button class="button" type="submit" mat-mini-fab color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+    </form>
+    <div *ngIf="submitted && f.todo.errors">
+      <mat-error *ngIf="f.todo.errors">
+        text is <strong>required</strong>
+      </mat-error>
+    </div>
+  </div>
+  <mat-list class="list" role="list">
+    <mat-list-item class="list-item" role="listitem" *ngFor="let todo of todos">
+      <div class="list-content">
+        {{ todo.title }}
+      </div>
+      <button class="list-btn" mat-mini-fab color="warn" aria-label="delete" (click)="onDeleteItem(todo._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

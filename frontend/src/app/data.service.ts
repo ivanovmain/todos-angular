@@ -21,8 +21,6 @@ export class DataService {
   }
   
   sendUserId(userId: string) {
-    console.log('user ID', userId);
-    
     this.subject.next(userId);
   }
 
