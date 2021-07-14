@@ -19,13 +19,13 @@ export class DataService {
   getUserId(): Observable<any> {
     return this.subject.asObservable();
   }
-  
+
   sendUserId(userId: string) {
     this.subject.next(userId);
   }
 
   clearUserId() {
-    this.subject.next();  
+    this.subject.next();
   }
 
   user:User | null = null;
@@ -36,7 +36,5 @@ export class DataService {
     this.user = user
     this.sendUserId(user._id)
   }
-  getUser() {
-    
-  }
+
 }
